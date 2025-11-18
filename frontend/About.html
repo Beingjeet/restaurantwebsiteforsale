@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us - Cool & Spices</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      /* About page specific styles */
+      .about-hero-banner {
+        background: linear-gradient(
+            135deg,
+            rgba(212, 165, 116, 0.1) 0%,
+            rgba(42, 42, 42, 0.5) 100%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="rgba(212,165,116,0.05)"/></pattern></defs><rect width="1200" height="600" fill="url(%23dots)"/></svg>');
+        padding: 6rem 2rem;
+        text-align: center;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .about-hero-banner h1 {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-family: "Georgia", serif;
+      }
+
+      .about-hero-banner .tagline {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        line-height: 1.8;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .story-section {
+        padding: 5rem 2rem;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(42, 42, 42, 0.3) 100%
+        );
+      }
+
+      .story-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .story-text h2 {
+        font-size: 2.5rem;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .story-text p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .story-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .highlight-box {
+        padding: 2rem;
+        background: rgba(212, 165, 116, 0.08);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        transition: all 300ms ease;
+        text-align: center;
+      }
+
+      .highlight-box:hover {
+        background: rgba(212, 165, 116, 0.15);
+        transform: translateY(-8px);
+        border-color: var(--primary);
+      }
+
+      .highlight-box h4 {
+        color: var(--primary);
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .highlight-box p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .values-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+        padding: 5rem 2rem;
+        border-top: 2px solid var(--border-color);
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .value-card {
+        text-align: center;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        transition: all 300ms ease;
+        background: rgba(212, 165, 116, 0.05);
+      }
+
+      .value-card:hover {
+        background: rgba(212, 165, 116, 0.12);
+        border-color: var(--primary);
+        transform: translateY(-8px);
+      }
+
+      .value-card h3 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .value-card p {
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .team-section {
+        padding: 5rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+      }
+
+      .team-member {
+        text-align: center;
+        padding: 2rem;
+        border-radius: 12px;
+        background: rgba(212, 165, 116, 0.05);
+        border: 1px solid var(--border-color);
+        transition: all 300ms ease;
+      }
+
+      .team-member:hover {
+        background: rgba(212, 165, 116, 0.15);
+        transform: translateY(-10px);
+        border-color: var(--primary);
+      }
+
+      .team-member img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        border: 3px solid var(--primary);
+      }
+
+      .team-member h3 {
+        color: var(--text-light);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .team-member .role {
+        color: var(--primary);
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .team-member p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        padding: 4rem 2rem;
+        text-align: center;
+        border-top: 2px solid var(--border-color);
+      }
+
+      .cta-section h2 {
+        color: #fff;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .cta-section p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-buttons a {
+        padding: 0.75rem 2.5rem;
+        font-weight: 700;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 300ms ease;
+        border: 2px solid #fff;
+      }
+
+      .cta-buttons .btn-light {
+        background: #fff;
+        color: var(--primary);
+        border-color: #fff;
+      }
+
+      .cta-buttons .btn-light:hover {
+        background: transparent;
+        color: #fff;
+      }
+
+      @media (max-width: 768px) {
+        .story-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .story-text h2 {
+          font-size: 1.8rem;
+        }
+
+        .about-hero-banner {
+          padding: 3rem 1rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .cta-buttons a {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body class="home-page">
+    <header class="home-header">
+      <nav class="left-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book.html">Dining</a>
+        <a href="About.html" style="border-color: var(--primary)">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Banner -->
+      <section class="about-hero-banner">
+        <h1>Cool & Spices</h1>
+        <p class="tagline">
+          Where Tradition Meets Innovation — Crafting Unforgettable Culinary
+          Experiences
+        </p>
+      </section>
+
+      <!-- Story Section -->
+      <section class="story-section">
+        <div class="story-content">
+          <div class="story-text">
+            <h2>Our Story</h2>
+            <p>
+              Cool & Spices was born from a simple belief: great food brings
+              people together. What started as a passion for bold, authentic
+              flavors has grown into a destination where tradition and
+              innovation dance on every plate.
+            </p>
+            <p>
+              Our chefs meticulously blend time-honored recipes with
+              contemporary techniques, creating dishes that honor the past while
+              exciting the present. Every ingredient is handpicked, every spice
+              is purposeful, and every dish tells a story of craftsmanship and
+              care.
+            </p>
+
+            <div class="story-highlights">
+              <div class="highlight-box">
+                <h4>Rooted in Tradition</h4>
+                <p>
+                  Authentic recipes passed down through generations, perfected
+                  in our kitchen.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <h4>Forward Thinking</h4>
+                <p>
+                  Modern plating and innovative flavor combinations that
+                  surprise and delight.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <h4>Ingredient Integrity</h4>
+                <p>
+                  Farm-to-table sourcing ensures freshness, sustainability, and
+                  superior taste.
+                </p>
+              </div>
+              <div class="highlight-box">
+                <h4>Guest-Centric Service</h4>
+                <p>
+                  Hospitality as a core value — treating every diner like
+                  family.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section class="values-section">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>🌱 Quality</h3>
+            <p>
+              Premium ingredients sourced responsibly. We believe excellence
+              starts with what goes into every dish.
+            </p>
+          </div>
+          <div class="value-card">
+            <h3>🔥 Craft</h3>
+            <p>
+              Culinary artistry in every creation. Our team takes pride in
+              skill, technique, and flavor balance.
+            </p>
+          </div>
+          <div class="value-card">
+            <h3>❤️ Hospitality</h3>
+            <p>
+              Warm, genuine service that makes you feel welcomed and valued.
+              Hospitality is our love language.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="team-section">
+        <h2 class="section-title">Meet Our Culinary Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23d4a574'/%3E%3Ctext x='50%' y='50%' font-size='40' fill='%230f0f0f' text-anchor='middle' dy='.3em' font-weight='bold'%3E👨‍🍳%3C/text%3E%3C/svg%3E"
+              alt="Chef"
+            />
+            <h3>Chef Arjun Sharma</h3>
+            <div class="role">Executive Chef & Culinary Director</div>
+            <p>
+              With 15+ years in fine dining, Chef Arjun crafts our signature
+              dishes, blending ancestral recipes with avant-garde plating. His
+              passion for spice is legendary.
+            </p>
+          </div>
+
+          <div class="team-member">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%238b6f47'/%3E%3Ctext x='50%' y='50%' font-size='40' fill='%23fff' text-anchor='middle' dy='.3em'%3E👩‍💼%3C/text%3E%3C/svg%3E"
+              alt="Manager"
+            />
+            <h3>Meera Patel</h3>
+            <div class="role">Operations & Guest Relations Manager</div>
+            <p>
+              Meera ensures every visit is seamless and memorable. Her attention
+              to detail and warm demeanor set the tone for exceptional
+              hospitality.
+            </p>
+          </div>
+
+          <div class="team-member">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23e8c9a8'/%3E%3Ctext x='50%' y='50%' font-size='40' fill='%230f0f0f' text-anchor='middle' dy='.3em'%3E🍰%3C/text%3E%3C/svg%3E"
+              alt="Pastry Chef"
+            />
+            <h3>Ravi Desai</h3>
+            <div class="role">Pastry Chef & Dessert Specialist</div>
+            <p>
+              Ravi's desserts are the crown jewel of our menu. From traditional
+              sweets to innovative confections, each creation is an edible work
+              of art.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
